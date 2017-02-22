@@ -1,0 +1,17 @@
+{
+  "name": "dms-day12-fsf2017",
+  "description": "",
+  "main": "server/app.js",
+  "authors": [
+    "Kenneth Phang <kenneth.phang@acorncodinglab.com> (https://github.com/kenken64/fitbit-oauth2/wiki)"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

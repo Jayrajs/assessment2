@@ -1,0 +1,16 @@
+{
+  "name": "dms-day12-fsf2017",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kenken77@bitbucket.org/kenken77/dms-day12-fsf2017.git"
+  },
+  "author": "Kenneth Phang <kenneth.phang@acorncodinglab.com> (https://github.com/kenken64/fitbit-oauth2/wiki)",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kenken77/dms-day12-fsf2017#readme"
+}

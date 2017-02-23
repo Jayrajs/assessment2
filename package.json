@@ -12,5 +12,12 @@
   },
   "author": "Kenneth Phang <kenneth.phang@acorncodinglab.com> (https://github.com/kenken64/fitbit-oauth2/wiki)",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/kenken77/dms-day12-fsf2017#readme"
+  "homepage": "https://bitbucket.org/kenken77/dms-day12-fsf2017#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mysql": "^2.13.0",
+    "path": "^0.12.7",
+    "sequelize": "^3.30.2"
+  }
 }

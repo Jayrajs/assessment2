@@ -3,16 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 
-const NODE_PORT = process.env.NODE_PORT || 8080;
-
-// TODO check the dirname is correct when test .
-const CLIENT_FOLDER = path.join(__dirname , '../client');
-const MSG_FOLDER = path.join(CLIENT_FOLDER, 'assets/messages');
-
 const MYSQL_USERNAME = "root";
 const MYSQL_PASSWORD = "password@123";
-
-var app = express();
 
 var conn = new Sequelize(
     'employees',
@@ -34,6 +26,19 @@ var conn = new Sequelize(
 var Department = require('./models/department')(conn, Sequelize);
 var Employee = require('./models/employee')(conn, Sequelize);
 var Manager = require('./models/deptmanager')(conn, Sequelize);
+var Blogs = require('./models/blogs')(conn, Sequelize);
+
+
+const NODE_PORT = process.env.NODE_PORT || 8080;
+
+// TODO check the dirname is correct when test .
+const CLIENT_FOLDER = path.join(__dirname , '../client');
+const MSG_FOLDER = path.join(CLIENT_FOLDER, 'assets/messages');
+
+var app = express();
+
+
+
 
 // Map the data association 
 Department.hasMany(Manager, { foreignKey: 'dept_no'});

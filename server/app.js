@@ -52,7 +52,34 @@ app.use(bodyParser.urlencoded({extended : false}));
 /**
  *  GET /api/departments - Get all dept records
  *  POST /api/departments - Save a department
+ *  DELETE /api/departments/:dept_no/manager/:emp_no - Delete a dept record with association
+ *  PUT /api/departmets/:dept_no - update a dept record
+ *  GET /api/static/departments - retrieve static data of the department list
  */
+
+app.get("/api/departments/managers", function(req, res){
+    console.log(req.query.searchString);
+    Department
+        .findAll({
+            where: { 
+                    $or: [
+                        { dept_name: {$like: "%" + req.query.searchString + "%"}},
+                        { dept_no: {$like: "%" + req.query.searchString + "%"}}
+                    ]
+            }
+            , include: [{
+                model: Manager
+                , order : [[ "to_date", "DESC"]]
+                , limit: 1
+                , include: [Employee]
+            }]
+        })
+        .then(function(departments){
+            res.status(200).json(departments);
+        }).catch(function (err){
+            res.status(500).json(err);
+        });
+});
 
 // route path - insert department record
 app.post(API_DEPARTMENTS_ENDPOINT, function(req, res){
@@ -70,6 +97,9 @@ app.post(API_DEPARTMENTS_ENDPOINT, function(req, res){
             res.status(500).json(err);
         });
 });
+
+
+
 
 // route path - retrieve all departments
 app.get(API_DEPARTMENTS_ENDPOINT, function(req, res){
@@ -127,11 +157,13 @@ app.put(API_DEPARTMENTS_ENDPOINT + "/:dept_no", function(req, res){
         })
 });
 
-app.delete(API_DEPARTMENTS_ENDPOINT + "/:dept_no", function(req, res){
+app.delete(API_DEPARTMENTS_ENDPOINT + "/:dept_no/manager/:emp_no", function(req, res){
     console.log("delete dept");
     console.log(req.params.dept_no);
     var whereClause = {};
     whereClause.dept_no = req.params.dept_no;
+    whereClause.emp_no = req.params.emp_no;
+    
     Department
         .destroy({
             where: whereClause
@@ -146,6 +178,52 @@ app.delete(API_DEPARTMENTS_ENDPOINT + "/:dept_no", function(req, res){
             res.status(50).json(err);
         });
 });
+
+
+app.get("/api/static/departments" , function(req, res){
+    var departments = [
+        {
+            deptNo: 1001,
+            deptName: "Admin"
+        },
+        {
+            deptNo: 1002,
+            deptName: "Finance"
+        },
+        {
+            deptNo: 1003,
+            deptName: "Sales"
+        },
+        {
+            deptNo: 1004,
+            deptName: "HR"
+        },
+        {
+            deptNo: 1005,
+            deptName: "Staff"
+        },
+        {
+            deptNo: 1006,
+            deptName: "Customer Care"
+        },
+        {
+            deptNo: 1007,
+            deptName: "Support"
+        }
+    ];
+    res.status(200).json(departments);
+})
+
+app.use(function(req,res){
+    console.log("404...");
+    res.status(400).sendFile(path.join(MSG_FOLDER, "404.html"));
+});
+
+app.use(function(err, req, res, next){
+    console.log("An error had occured 500");
+    res.status(500).sendFile(path.join(MSG_FOLDER, "500.html"));
+});
+
 
 app.listen(NODE_PORT, function(){
     console.log("Server is running at port " + NODE_PORT);

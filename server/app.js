@@ -85,11 +85,11 @@ app.get("/api/departments/managers", function(req, res){
 app.post(API_DEPARTMENTS_ENDPOINT, function(req, res){
     console.log("Insert Dept");
     console.log(req.body);
-    console.log(req.body.dept.no);
+    console.log(req.body.dept.id);
     console.log(req.body.dept.name);
     Department
         .create({
-            dept_no: req.body.dept.no,
+            dept_no: req.body.dept.id,
             dept_name: req.body.dept.name 
         }).then(function(department){
             res.status(200).json(department);
@@ -217,7 +217,6 @@ app.get("/api/static/departments" , function(req, res){
 })
 
 app.use(function(req,res){
-    console.log("404...");
     res.status(400).sendFile(path.join(MSG_FOLDER, "404.html"));
 });
 

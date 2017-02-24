@@ -28,6 +28,7 @@ conn.authenticate(function(){
 
 var blogs = require('./models/blogs')(conn, Sequelize);
 
+/*
 conn.sync({
     force:true
 }).then( function(){
@@ -38,7 +39,34 @@ conn.sync({
         blog_date: new Date(),
         email: "kenneth@gmail.com"
     });
-});
+});*/
+
+/*
+conn.query("SELECT * FROM BLOGS where email='kenneth@gmail.com'")
+    .spread(function(result, metadata){
+        console.log(result);
+    })*/
+/*
+conn.query("SELECT * FROM BLOGS where email=:email",
+  { replacements: { email: 'kenneth@gmail.com' }, type: sequelize.QueryTypes.SELECT }
+).then(function(result) {
+  console.log(result)
+})  */  
+
+var emailAddress = "kenneth@gmail.com";
+conn.query("SELECT * FROM BLOGS where email=:email",
+  { replacements: { email: emailAddress }, type: conn.QueryTypes.SELECT }
+).spread(function(result) {
+  console.log(result);
+  //console.log(metadata);
+})    
 
 
+/*
+conn.query("SELECT * FROM BLOGS where email='kenneth@gmail.com'")
+    .then(function(result){
+        console.log(result);
+    });
+
+*/
 

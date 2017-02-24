@@ -211,6 +211,8 @@ app.get("/api/static/departments" , function(req, res){
             deptName: "Support"
         }
     ];
+
+    
     res.status(200).json(departments);
 })
 

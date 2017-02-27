@@ -25,8 +25,9 @@
                 ng-model="ctrl.department.name"
                 ng-minlength="2" required>
             <div class="help-block" ng-messages="regForm.deptName.$error" ng-if="regForm.deptName.$touched">
-                <p ng-message="required">Department Name is required</p>
                 <p ng-message="minlength">Department Name Too Short</p>
+                <p ng-message="required">Department Name is required</p>
+                
             </div>
         </div>
 

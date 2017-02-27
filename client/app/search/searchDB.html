@@ -43,7 +43,6 @@
             <td>{{dept.dept_no }}</td>
             <td>{{ dept.dept_name }}</td>
             <td>
-            {{dept}}    
             <span ng-show="ctrl.showManager">
                  <!-- Handles display of departments that have not been assigned any manager -->
                 {{ dept.dept_managers[0] ? dept.dept_managers[0].emp_no : " "}}

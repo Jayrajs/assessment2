@@ -81,6 +81,7 @@ app.get("/api/departments/managers", function(req, res){
         });
 });
 
+
 // route path - insert department record
 app.post(API_DEPARTMENTS_ENDPOINT, function(req, res){
     console.log("Insert Dept");
@@ -99,7 +100,23 @@ app.post(API_DEPARTMENTS_ENDPOINT, function(req, res){
 });
 
 
-
+app.get(API_DEPARTMENTS_ENDPOINT + "/:dept_no", function(req, res){
+    console.log(req.params.dept_no);
+    Department
+            .find({
+                where: { 
+                    dept_no: req.params.dept_no
+                }
+            }).then(function(department){
+                res
+                    .status(200)
+                    .json(department);
+            }).catch(function(err){
+                res
+                    .status(500)
+                    .json(err);
+            })
+})
 
 // route path - retrieve all departments
 app.get(API_DEPARTMENTS_ENDPOINT, function(req, res){
@@ -164,7 +181,7 @@ app.delete(API_DEPARTMENTS_ENDPOINT + "/:dept_no/manager/:emp_no", function(req,
     whereClause.dept_no = req.params.dept_no;
     whereClause.emp_no = req.params.emp_no;
     
-    Department
+    Manager
         .destroy({
             where: whereClause
         }).then(function (result){
@@ -175,7 +192,7 @@ app.delete(API_DEPARTMENTS_ENDPOINT + "/:dept_no/manager/:emp_no", function(req,
                 res.status(200).json({success: false});
             }
         }).catch(function(err){
-            res.status(50).json(err);
+            res.status(500).json(err);
         });
 });
 

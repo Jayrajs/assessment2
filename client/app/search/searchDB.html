@@ -45,14 +45,14 @@
             <td>
             <span ng-show="ctrl.showManager">
                  <!-- Handles display of departments that have not been assigned any manager -->
-                {{ dept.managers[0] ? dept.managers[0].emp_no : " "}}
+                {{ dept.dept_managers[0] ? dept.dept_managers[0].emp_no : " "}}
             </span>
             </td>
             <td>
             <span ng-show="ctrl.showManager">
                  <!-- Handles display of departments that have not been assigned any manager -->
-                {{ dept.managers[0]
-                ? (dept.managers[0].employee.first_name + " " + dept.managers[0].employee.last_name)
+                {{ dept.dept_managers[0]
+                ? (dept.dept_managers[0].employee.first_name + " " + dept.dept_managers[0].employee.last_name)
                 : " "}}
             </span>
             </td>

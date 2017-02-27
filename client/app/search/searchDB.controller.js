@@ -12,7 +12,7 @@
         vm.result = null;
         vm.showManager = false;
         vm.search = search;
-        vm.searchManager = searchManager;
+        vm.searchForManager = searchManager;
 
         init();
 
@@ -27,13 +27,25 @@
 
         function searchManager(){
             vm.showManager = true;
-            searchDeptFromDB(vm.searchString);
+            searchDeptManagerFromDB(vm.searchString);
         }
 
         function searchDeptFromDB(param){
             DeptService
                 .retrieveDeptDB(param)
                 .then(function (results){
+                    vm.departments  = results.data;
+                })
+                .catch(function (err){
+                    console.log("error " + err);
+                });
+        }
+
+        function searchDeptManagerFromDB(param){
+            DeptService
+                .retrieveDeptManagerDB(param)
+                .then(function (results){
+                    console.log(JSON.stringify(results.data));
                     vm.departments  = results.data;
                 })
                 .catch(function (err){

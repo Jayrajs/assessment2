@@ -24,14 +24,8 @@
         </div>
         <div class="collapse navbar-collapse" id="#abs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-            <li class="nav-item active">
-                        <a href="#register" data-toggle="tab">Registration</a>
-                </li>
-                <li class="nav-item">
-                        <a href="#search" data-toggle="tab">Search</a>
-                </li>
-                <li class="nav-item">
-                        <a href="#searchDB" data-toggle="tab">Search DB</a>
+                <li class="nav-item active">
+                        <a href="#search" data-toggle="tab">Search Brand or Product</a>
                 </li>
                 <li class="nav-item">
                         <a href="#edit" data-toggle="tab">Edit</a>
@@ -42,14 +36,8 @@
 </nav>
 
 <div class="container tab-content">
-    <div class="tab-pane fade in active " id="register">
-        <ng-include src="'/app/registration/register.html'"></ng-include>
-    </div>
-    <div class="tab-pane fade" id="search">
+    <div class="tab-pane fade in active" id="search">
         <ng-include src="'/app/search/search.html'"></ng-include>
-    </div>
-    <div class="tab-pane fade" id="searchDB">
-        <ng-include src="'/app/search/searchDB.html'"></ng-include>
     </div>
     <div class="tab-pane fade" id="edit">
         <ng-include src="'/app/edit/edit.html'"></ng-include>
@@ -65,8 +53,7 @@
 
 <script src="app/app.js"></script>
 <script src="app/services/department.services.js"></script>
-<script src="app/registration/register.controller.js"></script>
-<script src="app/search/searchDB.controller.js"></script>
+<script src="app/search/search.controller.js"></script>
 <script src="app/edit/edit.controller.js"></script>
 
 

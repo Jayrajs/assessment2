@@ -1,43 +1,32 @@
 (function(){
     angular
         .module("DMS")
-        .service("DeptService", DeptService);
+        .service("GroceryApp", GroceryApp);
 
     DeptService.$inject = ['$http'];
 
-    function DeptService($http){
+    function GroceryApp($http){
         var service = this;
-        service.insertDept = insertDept;
-        service.retrieveDeptDB = retrieveDeptDB;
-        service.retrieveDeptManagerDB = retrieveDeptManagerDB;
+
+        service.retrieveDB = retrieveDB;
+        service.retrieveByID = retrieveByID;
+        service.retrieveByBrand = retrieveByBrand;
+        
+        /*
         service.deleteDept = deleteDept;
         service.updateDept = updateDept;
         service.retrieveDeptByID = retrieveDeptByID;
+        */
 
-        function insertDept(department){
-            return $http({
-                method: 'POST',
-                url: "api/departments",
-                data: {dept: department}
-            });
-        }
-
-        function retrieveDeptDB(searchString){
+        function retrieveDB(searchString){
             return $http({
                 method: 'GET',
-                url: "api/departments",
+                url: "api/grocery_list",
                 params: {'searchString': searchString}
             });
         }
 
-        function retrieveDeptManagerDB(searchString){
-            return $http({
-                method: 'GET',
-                url: "/api/departments/managers",
-                params: {'searchString': searchString}
-            });
-        }
-
+      /*
         function deleteDept(dept_no, emp_no){
             return $http({
                 method: 'DELETE',
@@ -55,15 +44,24 @@
                 }
             });
         }
+         */
 
-        function retrieveDeptByID(dept_no){
-            console.log(dept_no);
+        function retrieveByID(id){
+            console.log(id);
             return $http({
                 method: 'GET',
-                url: "/api/departments/managers/?searchString=" + dept_no
+                url: "/api/grocery_list/?searchString=" + id
             });
         }
-        
+
+         function retrieveByBrand(brand){
+            console.log(brand);
+            return $http({
+                method: 'GET',
+                url: "/api/grocery_list/?searchString=" + brand
+            });
+        }
+       
 
     }
 })();

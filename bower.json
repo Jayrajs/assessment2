@@ -12,12 +12,13 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "client/bower_components"
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
     "angular": "^1.6.2",
-    "font-awesome": "fontawesome#^4.7.0",
+    "font-awesome": "^4.7.0",
     "angular-messages": "^1.6.2",
     "angular-animate": "^1.6.2"
   }

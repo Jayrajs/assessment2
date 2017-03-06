@@ -1,1 +1,50 @@
-search
+<div class="container" ng-controller="SearchDBCtrl as ctrl">
+
+    <div class="page-header">
+        <h1>Department Management System
+            <small>SearchDB</small>
+        </h1>
+    </div>
+
+    <form name="queryForm" novalidate class="form-inline">
+        <div class="form-group">
+            <input id="searchString"
+                   class="form-control"
+                   size="50"
+                   type="text"
+                   name="searchString"
+                   ng-model="ctrl.searchString"
+                   placeholder="Enter brand or number">
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-info form-control" ng-disabled="queryForm.$invalid"
+                    ng-click="ctrl.search()">
+                Search Id
+        </button>
+        <button type="submit" class="btn btn-info form-control" ng-disabled="queryForm.$invalid"
+                    ng-click="ctrl.search2()">
+                Search Brand
+        </button>
+
+        </div>
+    </form>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>UPC12</th>
+            <th>brand</th>
+            <th>name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="dept in ctrl.departments">
+            <td>{{dept.id }}</td>
+            <td>{{ dept.upc12 }}</td>
+            <td>{{ dept.brand }}</td>
+            <td>{{ dept.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
